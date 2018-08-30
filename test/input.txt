@@ -42,7 +42,19 @@
   list
 
 ##########################################################
-# test find persons command
+# test find persons by phone command
+##########################################################
+
+  # should match none with no keywords
+  findByPhone
+  # does not match if none has phone number
+  findByPhone 23912039120
+
+  # find matching number
+  findByPhone 222222
+
+##########################################################
+# test find persons by name command
 ##########################################################
 
   # should match none with no keywords
