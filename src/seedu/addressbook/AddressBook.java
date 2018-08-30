@@ -464,16 +464,16 @@ public class AddressBook {
     }
 
     /**
-     * Finds the person whose phone number equals to that specified.
+     * Finds and lists all persons whose phone number equals to that specified.
      *
      * @param commandArgs full command args string from the user
      * @return feedback display message for the operation result
      */
     private static String executeFindPersonsByPhone(String commandArgs) {
         final String phoneNumber = extractPhoneFromFindPersonArgs(commandArgs);
-        final String[] personFound = getPersonWithPhoneNumber(phoneNumber);
-        showToUser(personFound);
-        return getMessageForPersonDisplayedSummary(personFound);
+        final ArrayList<String[]> personsFound = getPersonsWithPhoneNumber(phoneNumber);
+        showToUser(personsFound);
+        return getMessageForPersonsDisplayedSummary(personsFound);
     }
 
     /**
@@ -484,16 +484,6 @@ public class AddressBook {
      */
     private static String getMessageForPersonsDisplayedSummary(ArrayList<String[]> personsDisplayed) {
         return String.format(MESSAGE_PERSONS_FOUND_OVERVIEW, personsDisplayed.size());
-    }
-
-    /**
-     * Constructs a feedback message to summarise an operation that displayed a listing of persons.
-     *
-     * @param personsDisplayed used to generate summary
-     * @return summary message for persons displayed
-     */
-    private static String getMessageForPersonDisplayedSummary(String[] personsDisplayed) {
-        return String.format("Person found!");
     }
 
     /**
@@ -539,15 +529,15 @@ public class AddressBook {
      * @param phoneNumber for searching
      * @return list of persons in full model with name containing some of the keywords
      */
-    private static String[] getPersonWithPhoneNumber(String phoneNumber) {
-        final String[] matchedPerson = new String[3];
+    private static ArrayList<String[]> getPersonsWithPhoneNumber(String phoneNumber) {
+        final ArrayList<String[]> matchedPersons = new ArrayList<>();
         for (String[] person : getAllPersonsInAddressBook()) {
             final String personPhone = getPhoneFromPerson(person);
             if (personPhone.equals(phoneNumber)) {
-                return person;
+                matchedPersons.add(person);
             }
         }
-        return matchedPerson;
+        return matchedPersons;
     }
 
     /**
