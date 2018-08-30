@@ -59,8 +59,8 @@
 || 	Parameters: KEYWORD [MORE_KEYWORDS]
 || 	Example: find alice bob charlie
 ||
-|| findByPhone: Finds the person whose phone number equals to that specified
-|| 	Parameters: PHONE NUMBER
+|| findByPhone: Finds all persons whose phone number matches any of the phone numbers specified
+|| 	Parameters: PHONE_NUMBER [MORE_PHONE_NUMBERS]
 || 	Example: findByPhone 91234567
 ||
 || list: Displays all persons as a list with index numbers.
