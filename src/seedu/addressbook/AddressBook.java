@@ -464,14 +464,14 @@ public class AddressBook {
     }
 
     /**
-     * Finds and lists all persons whose phone number equals to that specified.
+     * Finds and lists all persons whose phone number equals to the number(s) specified.
      *
      * @param commandArgs full command args string from the user
      * @return feedback display message for the operation result
      */
     private static String executeFindPersonsByPhone(String commandArgs) {
-        final String phoneNumber = extractPhoneFromFindPersonArgs(commandArgs);
-        final ArrayList<String[]> personsFound = getPersonsWithPhoneNumber(phoneNumber);
+        final Set<String> phoneNumbers = extractPhoneFromFindPersonArgs(commandArgs);
+        final ArrayList<String[]> personsFound = getPersonsWithPhoneNumber(phoneNumbers);
         showToUser(personsFound);
         return getMessageForPersonsDisplayedSummary(personsFound);
     }
@@ -497,13 +497,13 @@ public class AddressBook {
     }
 
     /**
-     * Extracts phone number from the command arguments given for the find person by phone command.
+     * Extracts phone number(s) from the command arguments given for the find person by phone command.
      *
      * @param findPersonPhoneCommandArgs full command args string for the find persons command
      * @return phone number as specified by args
      */
-    private static String extractPhoneFromFindPersonArgs(String findPersonPhoneCommandArgs) {
-        return findPersonPhoneCommandArgs.trim();
+    private static Set<String> extractPhoneFromFindPersonArgs(String findPersonPhoneCommandArgs) {
+        return new HashSet<>(splitByWhitespace(findPersonPhoneCommandArgs.trim()));
     }
 
     /**
@@ -524,16 +524,17 @@ public class AddressBook {
     }
 
     /**
-     * Retrieves person in the full model whose phone number is that specified.
+     * Retrieves all persons in the full model whose phone number matches one of those specified.
      *
-     * @param phoneNumber for searching
+     * @param phoneNumbers for searching
      * @return list of persons in full model with name containing some of the keywords
      */
-    private static ArrayList<String[]> getPersonsWithPhoneNumber(String phoneNumber) {
+    private static ArrayList<String[]> getPersonsWithPhoneNumber(Collection<String> phoneNumbers) {
         final ArrayList<String[]> matchedPersons = new ArrayList<>();
         for (String[] person : getAllPersonsInAddressBook()) {
-            final String personPhone = getPhoneFromPerson(person);
-            if (personPhone.equals(phoneNumber)) {
+            final Set<String> personPhone = new HashSet<>();
+            personPhone.add(getPhoneFromPerson(person));
+            if (!Collections.disjoint(personPhone, phoneNumbers)) {
                 matchedPersons.add(person);
             }
         }
