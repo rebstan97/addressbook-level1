@@ -113,7 +113,7 @@ public class AddressBook {
 
     private static final String COMMAND_FIND_PHONE_WORD = "findByPhone";
     private static final String COMMAND_FIND_PHONE_DESC = "Finds all persons whose phone number matches any of "
-                                                        + "the phone numbers specified";
+                                                        + "the phone numbers specified.";
     private static final String COMMAND_FIND_PHONE_PARAMETERS = "PHONE_NUMBER [MORE_PHONE_NUMBERS]";
     private static final String COMMAND_FIND_PHONE_EXAMPLE = COMMAND_FIND_PHONE_WORD + " 91234567";
 

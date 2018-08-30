@@ -59,7 +59,7 @@
 || 	Parameters: KEYWORD [MORE_KEYWORDS]
 || 	Example: find alice bob charlie
 ||
-|| findByPhone: Finds all persons whose phone number matches any of the phone numbers specified
+|| findByPhone: Finds all persons whose phone number matches any of the phone numbers specified.
 || 	Parameters: PHONE_NUMBER [MORE_PHONE_NUMBERS]
 || 	Example: findByPhone 91234567
 ||
