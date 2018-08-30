@@ -107,13 +107,14 @@ public class AddressBook {
 
     private static final String COMMAND_FIND_WORD = "find";
     private static final String COMMAND_FIND_DESC = "Finds all persons whose names contain any of the specified "
-                                        + "keywords (case-sensitive) and displays them as a list with index numbers.";
+                                                  + "keywords (case-sensitive) and displays them as a list with index numbers.";
     private static final String COMMAND_FIND_PARAMETERS = "KEYWORD [MORE_KEYWORDS]";
     private static final String COMMAND_FIND_EXAMPLE = COMMAND_FIND_WORD + " alice bob charlie";
 
     private static final String COMMAND_FIND_PHONE_WORD = "findByPhone";
-    private static final String COMMAND_FIND_PHONE_DESC = "Finds the person whose phone number equals to that specified";
-    private static final String COMMAND_FIND_PHONE_PARAMETERS = "PHONE NUMBER";
+    private static final String COMMAND_FIND_PHONE_DESC = "Finds all persons whose phone number matches any of "
+                                                        + "the phone numbers specified";
+    private static final String COMMAND_FIND_PHONE_PARAMETERS = "PHONE_NUMBER [MORE_PHONE_NUMBERS]";
     private static final String COMMAND_FIND_PHONE_EXAMPLE = COMMAND_FIND_PHONE_WORD + " 91234567";
 
     private static final String COMMAND_LIST_WORD = "list";
